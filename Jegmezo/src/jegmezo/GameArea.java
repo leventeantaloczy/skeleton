@@ -133,13 +133,13 @@ public class GameArea {
 		System.out.println(">GameArea.constructor()");
 	}
 	
-	private void addField(Field f) {
+	public void addField(Field f) {
 		System.out.println("<GameArea.addField()");
 		fieldsOnArea.add(f);
 		System.out.println(">GameArea.addField()");
 	}
 	
-	private void addAvatar(Avatar a) {
+	public void addAvatar(Avatar a) {
 		System.out.println("<GameArea.addAvatar()");
 		avatars.add(a);
 		System.out.println(">GameArea.addAvatar()");
@@ -150,10 +150,8 @@ public class GameArea {
 	 * Benedek
 	 */
 	public void changeActiveAvatar() {
-		this.avatars.get(activeAvatar).EndTurn = false;
-		this.activeAvatar++;
-		if(activeAvatar >= this.avatars.size())
-			activeAvatar = 0;
+		System.out.println("<GameArea.changeActiveAvatar()");
+		System.out.println(">GameArea.changeActiveAvatar()");
 	}
 	
 	

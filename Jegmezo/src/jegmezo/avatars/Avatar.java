@@ -50,7 +50,6 @@ public abstract class Avatar {
 	public void useItem(Item i) {
 		System.out.println("<Avatar.useItem()");
 		i.use(this);
-		this.setActivity(1);
 		System.out.println(">Avatar.useItem()");
 	}
 	
@@ -61,7 +60,6 @@ public abstract class Avatar {
 	 */
 	public void dieByWater() {
 		System.out.println("<Avatar.dieByWater()");
-		if(!wearsWetsuit)
 			//gameEnder.endGame();	//vagy valami ilyesmi
 		System.out.println(">Avatar.dieByWater()");
 	}
@@ -82,7 +80,6 @@ public abstract class Avatar {
 	 */
 	public void gainHealth() {
 		System.out.println("<Avatar.gainHealth()");
-		healthPoints++;
 		System.out.println(">Avatar.gainHealth()");
 	}
 	
@@ -92,9 +89,7 @@ public abstract class Avatar {
 	 */
 	public void loseHealth() {
 		System.out.println("<Avatar.loseHealth()");
-		healthPoints--;
-		if(healthPoints == 0)
-			this.dieByHeatLoss();
+		
 		System.out.println(">Avatar.loseHealth()");
 	}
 	
