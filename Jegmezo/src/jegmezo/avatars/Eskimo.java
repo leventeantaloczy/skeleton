@@ -7,7 +7,6 @@ public class Eskimo extends Avatar{
 	
 	public Eskimo() {
 		super(5);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public int specialMove(Direction d) {
