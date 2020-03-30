@@ -55,10 +55,11 @@ public abstract class Field {
 		System.out.println(">Field.removeItem()");
 	}
 	
-	public void addAvatar(Avatar a) {
+	public boolean addAvatar(Avatar a) {
 		System.out.println("<Field.addAvatar()");
 		avatars.add(a);
 		System.out.println(">Field.addAvatar()");
+		return false;
 	}
 	
 	/*
