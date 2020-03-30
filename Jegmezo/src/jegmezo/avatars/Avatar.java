@@ -12,13 +12,10 @@ import jegmezo.items.*;
 public abstract class Avatar {
 	
 	public Field field;
-	private List<Item> backpack = new ArrayList<Item>();
-	private int activityPoints;
-	private int healthPoints;
-	public boolean EndTurn = false;
+	private List<Item> backpack;
 	public boolean wearsWetsuit = false;
 	public GameEnder gameEnder;
-	
+	public boolean EndTurn = false;
 	
 	
 	/*
@@ -28,8 +25,6 @@ public abstract class Avatar {
 	
 	public Avatar(int hp) {	
 		backpack = new LinkedList<Item>();
-		healthPoints = hp;
-		activityPoints = 4;
 	}
 	
 	/*
@@ -44,12 +39,13 @@ public abstract class Avatar {
 	}
 	
 	/*
-	 * használja az adott itemet, aktivitasa no
+	 * használja az adott itemet
 	 * Levente
 	 */
 	public void useItem(Item i) {
 		System.out.println("<Avatar.useItem()");
 		i.use(this);
+		this.setActivity(1);
 		System.out.println(">Avatar.useItem()");
 	}
 	
@@ -60,7 +56,8 @@ public abstract class Avatar {
 	 */
 	public void dieByWater() {
 		System.out.println("<Avatar.dieByWater()");
-		gameEnder.endGame();	
+		if(!wearsWetsuit)
+			gameEnder.endGame();
 		System.out.println(">Avatar.dieByWater()");
 	}
 	
@@ -87,14 +84,14 @@ public abstract class Avatar {
 	 * hp vesztes, ha 0 meghal heatLoss-ban
 	 * Levente
 	 */
-	public void loseHealth() {
+	public void loseHealth() throws IOException {
 		System.out.println("<Avatar.loseHealth()");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Will the poor guy die, because of this? Y/N");
-    		String command4 = br.readLine();
-    		if(command4.toUpperCase().equalsIgnoreCase("Y")) {
-    			this.dieByHeatLoss();
-    		}
+    	String command4 = br.readLine();
+    	if(command4.toUpperCase().equalsIgnoreCase("Y")) {
+    		this.dieByHeatLoss();
+    	}
 		System.out.println(">Avatar.loseHealth()");
 	}
 	
@@ -112,12 +109,13 @@ public abstract class Avatar {
 	 * d irányba elmozdul ha tud (csak akkor nem tud ha határmező van ott) 
 	 * Levente
 	 */
-	public void move(Direction d) {
+	public void move(Direction d) throws IOException {
 		System.out.println("<Avatar.move()");
 		Field f = field.getNeighbour(d);
 		
 		if(f.accept()) {
-			f.addAvatar(this);
+			if(false == f.addAvatar(this));
+				gameEnder.endGame();
 			field.removeAvatar(this);
 			this.setActivity(1);
 		}
@@ -126,13 +124,11 @@ public abstract class Avatar {
 	}
 	
 	/*
-	 * Ezt tudtam kitalalni arra hogy "szol controllernek"
-	 * Benedek
+	 *
 	 */
 	public void endTurn() {
 		System.out.println("<Avatar.endTurn()");
-		this.activityPoints = 4;
-		this.EndTurn = true;
+		this.EndTurn  = true;
 		System.out.println(">Avatar.endTurn()");
 	}
 	
@@ -144,12 +140,9 @@ public abstract class Avatar {
 	 */
 	public void setActivity(int i) {
 		System.out.println("<Avatar.setActivity()");
-		activityPoints -= i;
-		if(activityPoints <= 0) {
-			this.endTurn();
-		}
 		System.out.println(">Avatar.setActivity()");
 	}
 	
-	public abstract int specialMove(Direction d) throws IOException;
+	public abstract int specialMove(Direction d) throws IOException ;
+	
 }
