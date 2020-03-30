@@ -25,7 +25,7 @@ public class GameArea {
 		
 		HoleField holeField = new HoleField();
 		StableIce stableIce1 = new StableIce();
-		StableIce stableIce2 = new StableIce();
+		UnstableIce unstableIce2 = new UnstableIce();
 		StableIce stableIce3 = new StableIce();
 		StableIce stableIce4 = new StableIce();
 		StableIce stableIce5 = new StableIce();
@@ -43,7 +43,7 @@ public class GameArea {
 		
 		addField(holeField);
 		addField(stableIce1);
-		addField(stableIce2);
+		addField(unstableIce2);
 		addField(stableIce3);
 		addField(stableIce4);
 		addField(stableIce5);
@@ -85,12 +85,12 @@ public class GameArea {
 		//Nincs nyugati szomszed, mert minek
 		stableIce1.setNeighbour(border2);
 		stableIce1.setNeighbour(stableIce3);
-		stableIce1.setNeighbour(stableIce2);
+		stableIce1.setNeighbour(unstableIce2);
 		stableIce1.setNeighbour(holeField);
-		stableIce2.setNeighbour(border3);
-		stableIce2.setNeighbour(stableIce4);
-		stableIce2.setNeighbour(border4);
-		stableIce2.setNeighbour(stableIce1);
+		unstableIce2.setNeighbour(border3);
+		unstableIce2.setNeighbour(stableIce4);
+		unstableIce2.setNeighbour(border4);
+		unstableIce2.setNeighbour(stableIce1);
 		unstableIce.setNeighbour(holeField);
 		unstableIce.setNeighbour(stableIce5);
 		unstableIce.setNeighbour(stableIce3);
@@ -99,7 +99,7 @@ public class GameArea {
 		stableIce3.setNeighbour(stableIce6);
 		stableIce3.setNeighbour(stableIce4);
 		stableIce3.setNeighbour(unstableIce);
-		stableIce4.setNeighbour(stableIce2);
+		stableIce4.setNeighbour(unstableIce2);
 		stableIce4.setNeighbour(border6);
 		stableIce4.setNeighbour(border5);
 		stableIce4.setNeighbour(stableIce3);
