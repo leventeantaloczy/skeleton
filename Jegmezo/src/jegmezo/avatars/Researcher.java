@@ -17,7 +17,7 @@ public class Researcher extends Avatar{
 		System.out.println("<Researcher.checkField()");
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("How much is the capacity of the neighbour? Y/N");
+		System.out.println("How much is the capacity of the neighbour? WRITE A NUMBER");
     		String command4 = br.readLine();
 		
 		System.out.println(">Researcher.checkField()");
