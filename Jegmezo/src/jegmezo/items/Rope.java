@@ -11,75 +11,30 @@ import jegmezo.fields.Field;
 
 public class Rope extends Item{
 
-	/*
-	 * ugy gondoltam, hogy a parameterben kapott avatart menti meg, báár
-	 * Levente
-	 */
 	@Override
 	public void use(Avatar a) {
 		System.out.println("<Rope.use()");
 		
-		System.out.println("Melyik iranyba?");
-		Field f;
-		
+		System.out.println("Which direction? There is someone to your West, but noone in any Other direction. W/O");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    	try {
-			String direction = br.readLine();
-			switch(direction.toLowerCase()) {
-				case "n":{
-					f = a.getField().getNeighbour(Direction.North);
-					if(f.avatars.size() > 0) {
-						for(Avatar av : f.avatars){
-							av.move(Direction.South);
-						}
-					System.out.println("Avatars moved");
-					}
-					break;
-				}
-				case "s":{
-					f = a.getField().getNeighbour(Direction.South);
-					if(f.avatars.size() > 0) {
-						for(Avatar av : f.avatars){
-							av.move(Direction.North);
-						}
-					System.out.println("Avatars moved");
-					}
-					break;
-				}
-				case "e":{
-					f = a.getField().getNeighbour(Direction.East);
-					if(f.avatars.size() > 0) {
-						for(Avatar av : f.avatars){
-							av.move(Direction.West);
-						}
-					System.out.println("Avatars moved");
-					}
-					break;
-				}
-				case "w":{
-					f = a.getField().getNeighbour(Direction.West);
-					if(f.avatars.size() > 0) {
-						for(Avatar av : f.avatars){
-							av.move(Direction.East);
-						}
-					System.out.println("Avatars moved");
-					}
-					break;
-				}
-				default:
-					System.out.println("Helytelen");
-					break;
+		String dir = null;
+			try {
+				dir = br.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(dir.toUpperCase() == "W") {
+			Field f;
+			f = a.getField().getNeighbour(Direction.West);
+			for(Avatar av : f.avatars){
+				try {
+					av.move(Direction.East);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		
-		
-		System.out.println(">Rop.use()");
-		
-	}
-
+		System.out.println(">Rope.use()");
+    	}
 }
