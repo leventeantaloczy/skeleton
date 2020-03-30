@@ -11,8 +11,7 @@ public class Shovel extends Item{
 	@Override
 	public void use(Avatar a) {
 		System.out.println("<Shovel.use()");
-		Field f = a.getField();
-		f.setSnow(-2);
+		
 		System.out.println(">Shovel.use()");
 		
 	}
