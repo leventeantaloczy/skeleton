@@ -6,10 +6,8 @@ import jegmezo.fields.*;
 import jegmezo.items.*;
 
 public class GameArea {
-	/*packet lathatosag*/
-	
-	List<Avatar> avatars = new ArrayList<Avatar>();	//Ez alapjan lesznek a korok (tehat, hogy ki mikor es ki utan lephet)
-	List<Field> fieldsOnArea = new ArrayList<Field>(); //Ez alapjan lesz, hogy hova dobunk havat
+	List<Avatar> avatars = new ArrayList<Avatar>();	//Ez alapjan lesznek a korok (tehat, hogy ki mikor es ki utan lephet
+	List<Field> fieldsOnArea = new ArrayList<Field>(); //Ez alapjan lesz, hogy hova
 	int activeAvatar = 0;
 	
 	public GameArea(GameEnder gameEnder) {
@@ -17,11 +15,11 @@ public class GameArea {
 		
 		/*
 		* Egy jo kis init szekvencia. 
-		* Felepit egy tesztpalyat field-ekbol, iteme-kbol ĂŠs tesz rajuk 2 avatart. 
+		* Felepit egy tesztpalyat field-ekbol, iteme-kbol es tesz rajuk 2 avatart. 
 		* Ezen kene maszkalni es figyelni, hogy jo-e amiket kiir. 
 		* Zoli
 		*/
-		System.out.println("Creating and adding different types of fields for skeletoning purpose");
+		System.out.println("Creating and adding different tipes of fields for skeletoning purpose");
 		
 		HoleField holeField = new HoleField();
 		StableIce stableIce1 = new StableIce();
@@ -61,21 +59,25 @@ public class GameArea {
 		addField(border9);
 		
 		System.out.println("Creating and adding as many avatars as a proper test needs");
-
 		Eskimo eskimo = new Eskimo();
-		Researcher researcher = new Researcher();
 		eskimo.gameEnder = gameEnder;
+		Researcher researcher = new Researcher();
 		researcher.gameEnder = gameEnder;
+		Eskimo eskimo2 = new Eskimo();
+		eskimo2.gameEnder = gameEnder;
 		
 		addAvatar(eskimo);
+		addAvatar(eskimo2);
 		addAvatar(researcher);
-		unstableIce.addAvatar(eskimo);
-		stableIce4.addAvatar(researcher);
 		
 		System.out.println("Putting avatars on Fields");
 		
-		eskimo.field = unstableIce;
+		eskimo.field = stableIce3;
+		eskimo2.field = unstableIce;
 		researcher.field = stableIce4;
+		stableIce3.addAvatar(eskimo);
+		unstableIce.addAvatar(eskimo2);
+		stableIce4.addAvatar(researcher);
 		
 		System.out.println("Setting up the neighbourhood");
 		
@@ -123,7 +125,7 @@ public class GameArea {
 		Gun gun = new Gun();
 		
 		stableIce1.item = wetSuit;
-		stableIce2.item = flare;
+		unstableIce2.item = flare;
 		unstableIce.item = food;
 		stableIce3.item = shovel;
 		stableIce4.item = rope;
@@ -133,26 +135,25 @@ public class GameArea {
 		System.out.println(">GameArea.constructor()");
 	}
 	
-	public void addField(Field f) {
-		System.out.println("<GameArea.addField()");
-		fieldsOnArea.add(f);
-		System.out.println(">GameArea.addField()");
-	}
-	
-	public void addAvatar(Avatar a) {
-		System.out.println("<GameArea.addAvatar()");
-		avatars.add(a);
-		System.out.println(">GameArea.addAvatar()");
-	}
-	
 	/*
 	 * Ez valt aktiv Avatart a tömbben
 	 * Benedek
 	 */
 	public void changeActiveAvatar() {
 		System.out.println("<GameArea.changeActiveAvatar()");
+		
 		System.out.println(">GameArea.changeActiveAvatar()");
 	}
 	
+	private void addField(Field f) {
+		System.out.println("<GameArea.addField()");
+		fieldsOnArea.add(f);
+		System.out.println(">GameArea.addField()");
+	}
 	
+	void addAvatar(Avatar a) {
+		System.out.println("<GameArea.addAvatar()");
+		avatars.add(a);
+		System.out.println(">GameArea.addAvatar()");
+	}
 }
