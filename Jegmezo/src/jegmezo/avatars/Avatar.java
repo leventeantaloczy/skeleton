@@ -60,7 +60,7 @@ public abstract class Avatar {
 	 */
 	public void dieByWater() {
 		System.out.println("<Avatar.dieByWater()");
-			//gameEnder.endGame();	//vagy valami ilyesmi
+		gameEnder.endGame();	
 		System.out.println(">Avatar.dieByWater()");
 	}
 	
@@ -70,7 +70,7 @@ public abstract class Avatar {
 	*/
 	public void dieByHeatLoss() {
 		System.out.println("<Avatar.dieByHeatLoss()");
-		//gameEnder.endGame();	//vagy valami ilyesmi
+		gameEnder.endGame();
 		System.out.println(">Avatar.dieByHeatLoss()");
 	}
 	
@@ -89,7 +89,12 @@ public abstract class Avatar {
 	 */
 	public void loseHealth() {
 		System.out.println("<Avatar.loseHealth()");
-		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Belepusztult ebbe a szerencsetlen? Y/N");
+		String command4 = br.readLine();
+		if(command4.toUpperCase().equalsIgnoreCase("Y")) {
+			this.dieByHeatLoss();
+		}
 		System.out.println(">Avatar.loseHealth()");
 	}
 	
