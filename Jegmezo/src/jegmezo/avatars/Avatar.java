@@ -90,11 +90,11 @@ public abstract class Avatar {
 	public void loseHealth() {
 		System.out.println("<Avatar.loseHealth()");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Belepusztult ebbe a szerencsetlen? Y/N");
-		String command4 = br.readLine();
-		if(command4.toUpperCase().equalsIgnoreCase("Y")) {
-			this.dieByHeatLoss();
-		}
+		System.out.println("Will the poor guy die, because of this? Y/N");
+    		String command4 = br.readLine();
+    		if(command4.toUpperCase().equalsIgnoreCase("Y")) {
+    			this.dieByHeatLoss();
+    		}
 		System.out.println(">Avatar.loseHealth()");
 	}
 	
