@@ -27,8 +27,17 @@ public abstract class Field {
 	
 	public boolean accept() {
 		System.out.println("<Field.accept()");
-		System.out.println(">Field.accept()");
-		return true;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Is the neighbour a Border? Y/N");
+		String command4 = br.readLine();
+		if(command4.toUpperCase().equalsIgnoreCase("N")) {
+			System.out.println(">Field.accept()");
+			return true;
+		}
+		else {
+			System.out.println(">Field.accept()");
+			return false;
+		}
 	}
 	
 	public void removeAvatar(Avatar a) {
