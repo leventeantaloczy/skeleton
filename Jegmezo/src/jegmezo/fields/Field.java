@@ -8,36 +8,38 @@ import jegmezo.items.*;
 
 public abstract class Field {
 
-	private int snowAmount;
-	private int capacity;
-	private boolean Igloo;
 	public List<Avatar> avatars = new ArrayList<Avatar>();
 	public Item item;
-	private List<Field> neighbours = new ArrayList <Field>();
-	
-	/*
-	 * TODO
-	 * Kezdetben még legyen mindenstatikus
-	 * Levente
-	 */
+	private List<Field> neighbours = new ArrayList<Field>();
+
 	
 	public Field(){
 
 	}
 	
-	public boolean accept() {
+	public boolean accept() throws IOException {
 		System.out.println("<Field.accept()");
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Is the neighbour a Border? Y/N");
-		String command4 = br.readLine();
-		if(command4.toUpperCase().equalsIgnoreCase("N")) {
-			System.out.println(">Field.accept()");
-			return true;
-		}
-		else {
-			System.out.println(">Field.accept()");
-			return false;
-		}
+    	String command4 = br.readLine();
+    	if(command4.toUpperCase().equalsIgnoreCase("N")) {
+    		System.out.println(">Field.accept()");
+    		return true;
+    	}
+    	else {
+    		System.out.println(">Field.accept()");
+    		return false;
+    	}
+	}
+	
+	public int getSnowAmount() throws IOException{
+		System.out.println("<getSnowAmount()");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("How much snow are there? WRITE A NUMBER");
+    	String snowAmount = br.readLine();
+    	System.out.println(">getSnowAmount()");
+		return Integer.parseInt(snowAmount);
 	}
 	
 	public void removeAvatar(Avatar a) {
@@ -81,7 +83,7 @@ public abstract class Field {
 	public void setNeighbour(Field f) {
 		System.out.println("<Field.setNeighbour()");
 		this.neighbours.add(f);
-		System.out.println(">Field.setNeighbour()");
+		System.out.println("<Field.setNeighbour()");
 	}
 	
 	/*
@@ -90,26 +92,14 @@ public abstract class Field {
 	 */
 	public void setSnow(int i) {
 		System.out.println("<Field.setSnow()");
-		snowAmount += i;
 		System.out.println(">Field.setSnow()");
 	}
-	
-	public int getSnowAmount(){
-		System.out.println("<getSnowAmount()");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("How much snow are there? WRITE A NUMBER");
-		String snowAmount = br.readLine();
-		System.out.println(">getSnowAmount()");
-		return Integer.parseInt(snowAmount);
-	}
-	
 	/*
 	 * setter
 	 * Levente
 	 */
 	public void setIgloo() {
 		System.out.println("<Field.setIgloo()");
-		Igloo = !Igloo;
 		System.out.println(">Field.setIgloo()");
 	}
 	
@@ -120,7 +110,7 @@ public abstract class Field {
 	public int getCapacity() {
 		System.out.println("<Field.getCapacity()");
 		System.out.println(">Field.getCapacity()");
-		return capacity;
+		return 0;
 	}
 	
 }
