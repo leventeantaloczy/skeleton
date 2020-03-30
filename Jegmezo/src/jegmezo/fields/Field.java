@@ -94,7 +94,12 @@ public abstract class Field {
 	}
 	
 	public int getSnowAmount(){
-		return snowAmount;
+		System.out.println("<getSnowAmount()");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("How much snow are there? WRITE A NUMBER");
+		String snowAmount = br.readLine();
+		System.out.println(">getSnowAmount()");
+		return Integer.parseInt(snowAmount);
 	}
 	
 	/*
