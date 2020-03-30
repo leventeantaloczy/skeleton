@@ -13,15 +13,15 @@ public class Researcher extends Avatar{
 	 * A d iranyu mezot leelenorzi és visszater annak kapacitas ertekevel
 	 * Levente
 	 */
-	public int specialMove(Direction d) {
+	public int specialMove(Direction d) throws IOException {
 		System.out.println("<Researcher.checkField()");
 		
-		Field f = new StableIce(); 
-		f = field.getNeighbour(d);
-		this.setActivity(1);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("How much is the capacity of the neighbour? Y/N");
+    		String command4 = br.readLine();
 		
 		System.out.println(">Researcher.checkField()");
-		return f.getCapacity();
+		return Integer.parseInt(command4);
 	}
 	
 }
